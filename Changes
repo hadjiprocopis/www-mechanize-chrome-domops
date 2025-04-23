@@ -1,0 +1,58 @@
+Revision history for WWW-Mechanize-Chrome-DOMops
+
+0.01    12-08-2023/00:21
+        First version, released on an unsuspecting world.
+
+0.02	22-08-2023/13:30
+	Tests now exit gracefully (pass) if the google-chrome executable is not installed.
+	Minor POD changes.
+
+0.03	22-08-2023/17:00
+	Removed the 'INSTALL_BASE' from Makefile.PL
+	Added Log::Log4perl as a dependency for the testing phase.
+	Minor POD changes.
+
+0.04	23-08-2023/14:30
+	Fixed the error message when checking for correct parameters, replaced 'description' with 'name'.
+	Added feature: user can specify javascript code to create the information hash
+	to be returned for each matched element. Before the return was a hash of "tag" and "id".
+	Now the user can optionally specify the javascript code to create this information hash.
+	The fallback behaves as in previous version, there should be no breaks.
+	POD extended.
+	Two more module dependencies added (required for testing).
+	All user-specified javascript code can throw exception which we will catch and propagate
+	to perl code. This has now its own test case.
+
+0.05	29-08-2023/14:30
+	Added a security warning for when the same google-chrome
+	browser/identity is used for everyday surfing and with
+	this module. Cookies, history, passwords will all be
+	accessible to module's internal and 3rd-party
+	javascript if the browser is not invoked with a fresh session.
+
+0.06	29-08-2023/14:31
+	Nothing new.
+
+0.07    20-12-2023/12:00
+        Enhanced documentation.
+
+0.08    20-12-2023/12:01
+        Duh! Makefile.PL contains unwanted tags.
+
+0.09    20-12-2023/12:02
+        Documentation.
+
+0.10    23-04-2025/13:45
+        Added 'domops_wait_for_page_to_load()' which waits for
+        the "dom-ready" event. It optionally waits for HTML elements
+        to be present in the DOM even if injected dynamically
+        after page has been loaded, which is very common.
+	Added XPath selection of elements for 'domops_find()' and 'domops_zap()'.
+        Switched to Test::TempDir::Tiny in test files.
+        Changed sub names 'zap()' to 'domops_zap()' and 'find()' to 'domops_find()' in order to avoid possible clashes with other modules.
+	Exported variable 'VERBOSE_DOMops' is now called 'domops_VERBOSITY'.
+        Now also optionally exporting: 'domops_read_dom_element_selectors_from_JSON_string()' and 'domops_read_dom_element_selectors_from_JSON_file()'
+
+0.11    23-04-2025/14:00
+        Added the headless option to launching mechanize in tests.
+
